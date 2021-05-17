@@ -71,11 +71,6 @@ def load_data(filename):
             if line_count > 0:
 
                 processed_line = []
-
-                for index in range(len(row)):
-
-
-
                 evidence.append(row[0:-1])
                 labels.append(row[-1])
 
@@ -85,6 +80,27 @@ def load_data(filename):
 
             
     raise NotImplementedError
+
+
+def process_row(row):
+    """
+    Given a row of data from a csv file, return a processed data row and label as a tuple.
+    """
+    processed_row = []
+
+    # Int and float columns can be directly converted
+    # Other columns are parsed manually
+    # Revenue Column becomes the 'label'
+
+    for index in range(len(row)):
+
+        if index in [0,2,4,]:
+            processed_row.append(int(row[index]))
+        elif index in [1,3,]:
+            processed_row.append(float(row[index]))
+        else:
+            pass
+            
 
 
 def train_model(evidence, labels):
