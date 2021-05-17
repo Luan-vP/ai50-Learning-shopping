@@ -1,8 +1,8 @@
 import csv
 import sys
 
-# from sklearn.model_selection import train_test_split
-# from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
 
 TEST_SIZE = 0.4
 
@@ -129,7 +129,12 @@ def train_model(evidence, labels):
     Given a list of evidence lists and a list of labels, return a
     fitted k-nearest neighbor model (k=1) trained on the data.
     """
-    raise NotImplementedError
+
+    neigh = KNeighborsClassifier(n_neighbors = 1)
+
+    neigh.fit(evidence, labels)
+
+    return neigh
 
 
 def evaluate(labels, predictions):
