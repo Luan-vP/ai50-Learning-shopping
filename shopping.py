@@ -87,6 +87,7 @@ def process_row(row):
     Given a row of data from a csv file, return a processed data row and label as a tuple.
     """
     processed_row = []
+    months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
     # Int and float columns can be directly converted
     # Other columns are parsed manually
@@ -94,12 +95,35 @@ def process_row(row):
 
     for index in range(len(row)):
 
-        if index in [0,2,4,]:
+        if index in [0,2,4,11,12,13,14]:
             processed_row.append(int(row[index]))
-        elif index in [1,3,]:
+        elif index in [1,3,5,6,7,8,9]:
             processed_row.append(float(row[index]))
+        elif index == 10:
+            # Month
+            processed_row.append(months.index(row[index]))
+        elif index == 15:
+            # VisitorType
+            if row[index] == "Returning_Visitor":
+                processed_row.append(1)
+            else:
+                processed_row.append(0)
+        elif index == 16:
+            # Weekend
+            if row[index] == "TRUE":
+                processed_row.append(1)
+            else:
+                processed_row.append(0)
+        elif index == 17:
+            # Revenue
+            if row[index] == "TRUE":
+                label = 1
+            else: 
+                label = 0
         else:
-            pass
+            raise "Incorrect data array length"
+
+    return (processed_row, label)
             
 
 
