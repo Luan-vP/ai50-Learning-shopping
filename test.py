@@ -16,3 +16,17 @@ if not passing:
     print((correct_row,correct_label))
     print("Got:")
     print(process_row(test_case_1))
+
+########
+print("test load_data")
+
+result = load_data("shopping.csv")
+
+print(result)
+
+print("test output lengths")
+
+(evidence, labels) = result
+print(len(evidence) == len(labels))
+print(len(evidence))
+print(len(labels))

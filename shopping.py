@@ -63,23 +63,20 @@ def load_data(filename):
     evidence = []
     labels = []
 
-    with open("shopping.csv") as file:
+    with open(filename) as file:
         csv_reader = csv.reader(file, delimiter=',')
         line_count = 0
         for row in csv_reader:
             
             if line_count > 0:
 
-                processed_line = []
-                evidence.append(row[0:-1])
-                labels.append(row[-1])
+                (new_evidence, new_label) = process_row(row)
+                evidence.append(new_evidence)
+                labels.append(new_label)
 
             line_count += 1 
 
-    print(evidence)
-
-            
-    raise NotImplementedError
+    return (evidence, labels)
 
 
 def process_row(row):
@@ -87,7 +84,7 @@ def process_row(row):
     Given a row of data from a csv file, return a processed data row and label as a tuple.
     """
     processed_row = []
-    months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    months = ["Jan","Feb","Mar","Apr","May","June","Jul","Aug","Sep","Oct","Nov","Dec"]
 
     # Int and float columns can be directly converted
     # Other columns are parsed manually
