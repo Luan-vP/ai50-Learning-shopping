@@ -9,4 +9,10 @@ test_case_1 = ['0','0','0','0','1','0','0.2','0.2','0','0','Feb','1','1','1','1'
 correct_row = [0, 0.0, 0, 0.0, 1, 0.0, 0.2, 0.2, 0.0, 0.0, 1, 1, 1, 1, 1, 1, 0]
 correct_label = 0
 
-print(process_row(test_case_1)==(correct_row,correct_label))
+passing = process_row(test_case_1)==(correct_row,correct_label)
+print(passing)
+if not passing:
+    print("Expected")
+    print((correct_row,correct_label))
+    print("Got:")
+    print(process_row(test_case_1))
